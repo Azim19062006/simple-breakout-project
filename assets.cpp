@@ -33,8 +33,8 @@ void unload_textures()
 void load_sounds()
 {
     InitAudioDevice();
-    win_sound = LoadSound("data/sounds/win.wav");
-    lose_sound = LoadSound("data/sounds/lose.wav");
+    win_sound = LoadSound("data/sounds/level_completed.wav");
+    lose_sound = LoadSound("data/sounds/lose_of_lives.wav");
 }
 
 void unload_sounds()

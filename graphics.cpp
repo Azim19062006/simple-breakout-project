@@ -85,6 +85,13 @@ void draw_text(const Text& text)
     DrawTextEx(*text.font, text.str.c_str(), pos, y, text.spacing, text.color);
 }
 
+void init_graphics()
+{
+    screen_size.x = static_cast<float>(GetScreenWidth());
+    screen_size.y = static_cast<float>(GetScreenHeight());
+    screen_scale = std::min(screen_size.x, screen_size.y) / screen_scale_divisor;
+}
+
 void derive_graphics_metrics()
 {
     screen_size.x = static_cast<float>(GetScreenWidth());

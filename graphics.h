@@ -1,6 +1,7 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
+void init_graphics();
 void derive_graphics_metrics();
 
 void draw_menu();
