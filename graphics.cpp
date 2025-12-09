@@ -145,6 +145,16 @@ void draw_ui()
     };
     draw_text(level_counter);
 
+    const Text lives_counter = {
+        "LIVES " + std::to_string(current_lives),
+        { 0.15f, 0.0375f },
+        48.0f,
+        WHITE,
+        4.0f,
+        &menu_font
+    };
+    draw_text(lives_counter);
+
     const Text boxes_remaining = {
         "BLOCKS " + std::to_string(current_level_blocks),
         { 0.5f, 0.9625f },
@@ -264,4 +274,29 @@ void draw_victory_menu()
         &menu_font
     };
     draw_text(victory_subtitle);
+}
+
+void draw_game_over()
+{
+    ClearBackground(BLACK);
+
+    const Text game_over_title = {
+        "Game Over",
+        { 0.50f, 0.50f },
+        100.0f,
+        RED,
+        4.0f,
+        &menu_font
+    };
+    draw_text(game_over_title);
+
+    const Text game_over_subtitle = {
+        "Press Enter to Restart",
+        { 0.50f, 0.65f },
+        32.0f,
+        WHITE,
+        4.0f,
+        &menu_font
+    };
+    draw_text(game_over_subtitle);
 }
