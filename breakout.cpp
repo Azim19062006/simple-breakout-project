@@ -15,10 +15,12 @@ void update()
             current_level_index = 0;
             current_lives = max_lives;
             load_level();
+            SetMusicVolume(background_music, 0.2f);
         }
     } else if (game_state == in_game_state) {
         if (IsKeyPressed(KEY_ESCAPE)) {
             game_state = paused_state;
+            SetMusicVolume(background_music, 1.0f);
         }
         if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) {
             move_paddle(-paddle_speed);
@@ -32,6 +34,7 @@ void update()
             PlaySound(lose_sound);
             if (current_lives <= 0) {
                 game_state = game_over_state;
+                SetMusicVolume(background_music, 1.0f);
             } else {
                 load_level();
             }
@@ -42,14 +45,17 @@ void update()
     } else if (game_state == paused_state) {
         if (IsKeyPressed(KEY_ESCAPE)) {
             game_state = in_game_state;
+            SetMusicVolume(background_music, 0.2f);
         }
     } else if (game_state == victory_state) {
         if (IsKeyPressed(KEY_ENTER)) {
             game_state = menu_state;
+            SetMusicVolume(background_music, 1.0f);
         }
     } else if (game_state == game_over_state) {
         if (IsKeyPressed(KEY_ENTER)) {
             game_state = menu_state;
+            SetMusicVolume(background_music, 1.0f);
         }
     }
 }
@@ -77,6 +83,7 @@ int main()
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(1280, 720, "Breakout");
     SetTargetFPS(60);
+    SetExitKey(KEY_NULL);
 
     init_graphics();
     load_fonts();
@@ -84,6 +91,8 @@ int main()
     load_sounds();
 
     while (!WindowShouldClose()) {
+        UpdateMusicStream(background_music);
+
         BeginDrawing();
 
         draw();
