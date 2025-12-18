@@ -131,6 +131,8 @@ inline level levels[level_count] = {
 inline constexpr int max_lives = 3;
 inline int current_lives = max_lives;
 
+inline int current_score = 0;
+
 inline game_state game_state = menu_state;
 
 #endif // GAME_H

@@ -16,8 +16,8 @@ void spawn_ball()
                 set_level_cell(row, column, VOID);
                 ball_pos = { static_cast<float>(column), static_cast<float>(row) };
                 constexpr float ball_launch_angle_radians = ball_launch_angle_degrees * (std::numbers::pi_v<float> / 180.0f);
-                ball_vel.y = -ball_launch_vel_mag * std::sin(ball_launch_angle_radians);
-                ball_vel.x = (rand() % 2 == 0) ? ball_launch_vel_mag * std::cos(ball_launch_angle_radians) : -ball_launch_vel_mag * std::cos(ball_launch_angle_radians);
+                ball_vel.y = -current_ball_speed * std::sin(ball_launch_angle_radians);
+                ball_vel.x = (rand() % 2 == 0) ? current_ball_speed * std::cos(ball_launch_angle_radians) : -current_ball_speed * std::cos(ball_launch_angle_radians);
                 goto outer_loop_end;
             }
         }
@@ -56,9 +56,21 @@ void move_ball()
 
         temp = VOID;
         --current_level_blocks;
+        current_score += 10;
         PlaySound(block_hit_sound);
     } else if (is_colliding_with_paddle(next_ball_pos, ball_size)) {
         ball_vel.y = -std::abs(ball_vel.y);
+        
+        float paddle_center = paddle_pos.x + paddle_size.x / 2.0f;
+        float ball_center = ball_pos.x + ball_size.x / 2.0f;
+        float hit_position = ball_center - paddle_center;
+        
+        if (hit_position < -0.5f) {
+            ball_vel.x = -std::abs(ball_vel.x);
+        } else if (hit_position > 0.5f) {
+            ball_vel.x = std::abs(ball_vel.x);
+        }
+        
         PlaySound(paddle_bounce_sound);
     }
 

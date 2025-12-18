@@ -14,6 +14,7 @@ void update()
             game_state = in_game_state;
             current_level_index = 0;
             current_lives = max_lives;
+            current_score = 0;
             load_level();
             SetMusicVolume(background_music, 0.2f);
         }

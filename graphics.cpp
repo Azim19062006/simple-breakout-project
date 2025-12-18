@@ -155,6 +155,16 @@ void draw_ui()
     };
     draw_text(lives_counter);
 
+    const Text score_counter = {
+        "SCORE " + std::to_string(current_score),
+        { 0.85f, 0.0375f },
+        48.0f,
+        WHITE,
+        4.0f,
+        &menu_font
+    };
+    draw_text(score_counter);
+
     const Text boxes_remaining = {
         "BLOCKS " + std::to_string(current_level_blocks),
         { 0.5f, 0.9625f },

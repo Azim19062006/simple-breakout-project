@@ -36,6 +36,8 @@ void load_level(const int offset)
     }
     current_level = { rows, columns, current_level_data };
 
+    current_ball_speed = ball_launch_vel_mag * (1.0f + current_level_index * 0.1f);
+
     spawn_ball();
     spawn_paddle();
 
